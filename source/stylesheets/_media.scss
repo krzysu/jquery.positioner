@@ -1,0 +1,21 @@
+
+@media only screen and (max-width : 480px) {
+    header:after{content:'smarphone';}
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    header:after{content:'better smartfone';}
+}
+
+@media only screen and (min-width: 768px) {
+    header:after{content:'ipad';}
+}
+
+@media only screen and (min-width: 1024px) {
+    header:after{content:'normal';}
+}
+
+@media only screen and (min-width : 1280px) {
+    header:after{content:'large';}
+}
+
