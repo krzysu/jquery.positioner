@@ -13,7 +13,7 @@
   %body{:class => page_classes}
     #container
       %header
-        header
+        %h1 jquery.positioner test page
       
       #main{:role => "main"}
         = yield
@@ -22,7 +22,7 @@
         footer
 
     
-    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"}
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
     = javascript_include_tag "app"
     :javascript
       $(function(){

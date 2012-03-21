@@ -1,34 +1,17 @@
 @import "compass";
 
-$link-color:         #0388a6;
-$link-hover-color:   #009ce0;
-$link-focus-color:   false;
-$link-active-color:  false;
-$link-visited-color: false;
-
 $font-color:  #2a2a2a;
 $font-family: sans-serif;
 $base-font-size:   12px;
 $base-line-height: 18px;
-
-$total-cols: 12;
-$col-width: 4em;
-$gutter-width: 1em;
-$side-gutter-width: $gutter-width;
-
-@include global-reset;
 
 body {
   font-family: $font-family;
   color: $font-color; 
 }
 
-a {
-  @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
-}
-
 #container {
-  width:960px; max-width:100%; margin:0 auto;
+  width:1100px; max-width:100%; margin:0 auto;
 }
 
 
@@ -41,7 +24,7 @@ a {
 }
 
 .some-element {
-  height: 50px;
+  height: 100px;
   margin: 10px;
   padding: 10px;
   border: 1px solid #000;
@@ -49,7 +32,7 @@ a {
 
 #element {
   float: right;
-  height: 100px;
+  height: 200px;
   width: 50%;
   margin: 10px;
   padding: 10px;
@@ -57,5 +40,5 @@ a {
 }
 
 footer {
-  height: 400px;
+  height: 1000px;
 }
