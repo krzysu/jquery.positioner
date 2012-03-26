@@ -1,7 +1,6 @@
-#= require ./positioner
+#= require_tree ./src
 #= require_self
 
 class window.PageController
   constructor: () ->
-    console.log('test')
     @positioner = new Positioner('#element', '#parent', 0)

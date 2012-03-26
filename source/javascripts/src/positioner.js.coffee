@@ -1,9 +1,11 @@
 class window.Positioner
   constructor: (@box, @parent, @margin = 0, @preserveSpace = false) ->
-    if @box != null && $(@box).length > 0
+    if @box? && $(@box).length > 0
       @_setData()
       @_initEvents()
       @_controlBoxPosition() # check initial position of box
+
+      @accountant = new Accountant(@box, @parent)
 
   _setData: () ->
     @isBoxFixed = false # for test purposes

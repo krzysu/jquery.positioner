@@ -10,33 +10,36 @@ body {
   color: $font-color; 
 }
 
+p {
+  margin: 0;
+}
+
 #container {
   width:1100px; max-width:100%; margin:0 auto;
 }
 
-
-#parent {
+.box {
   border: 1px solid #000;
   padding: 10px;
   margin: 10px;
+}
+
+#parent {
+  @extend .box;
   height: 1000px;
   @include pie-clearfix;
 }
 
 .some-element {
+  @extend .box;
   height: 100px;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #000;
 }
 
 #element {
+  @extend .box;
   float: right;
   height: 200px;
   width: 50%;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #000;
 }
 
 footer {
