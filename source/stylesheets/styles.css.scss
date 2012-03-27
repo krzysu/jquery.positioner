@@ -28,6 +28,7 @@ p {
   @extend .box;
   height: 1000px;
   @include pie-clearfix;
+  position: relative;
 }
 
 .some-element {

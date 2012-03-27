@@ -21,9 +21,6 @@ class window.Positioner
     @startPoint = @accountant.getStartPoint() - @margin
     @endPoint = @accountant.getEndPoint() - @margin
 
-    console.log('data', @boxData, @startPoint, @endPoint)
-
-
   _initEvents: () ->
     $(window).on 'scroll.positioner', () =>
       @_controlBoxPosition()
@@ -52,6 +49,7 @@ class window.Positioner
         width: @boxData.width
         left: @boxData.fixedPositionLeft
         top: @margin
+        bottom: ''
 
     @isBoxFixed = true
     @isBoxAtTheBottom = false
@@ -64,6 +62,7 @@ class window.Positioner
         width: ''
         left: ''
         top: ''
+        bottom: ''
 
     @isBoxFixed = false
     @isBoxAtTheBottom = false
@@ -75,7 +74,8 @@ class window.Positioner
         position: 'absolute'
         width: @boxData.width
         left: @boxData.absolutePositionLeft
-        top: @boxData.absolutePositionTop
+        top: '' # @boxData.absolutePositionTop
+        bottom: 0
 
     @isBoxFixed = false
     @isBoxAtTheBottom = true

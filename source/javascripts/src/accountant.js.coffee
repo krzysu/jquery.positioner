@@ -26,12 +26,15 @@ class window.Accountant
       marginLeft: @_numberize( box.css('margin-left') )
       marginTop: @_numberize( box.css('margin-top') )
 
-      absolutePositionLeft: box.offsetLeft - parent.offsetLeft
-      absolutePositionTop: parent.height - box.outerHeight() + parent.paddingTop
+      borderLeft: @_numberize( box.css('border-left-width') )
+
+      absolutePositionTop: parent.height + parent.paddingTop - box.outerHeight()
 
     data.fixedPositionLeft = data.offsetLeft - data.marginLeft
+    data.absolutePositionLeft = data.offsetLeft - parent.offsetLeft - data.marginLeft + parent.borderLeft
 
-    return data
+    console.log('box', data)
+    data
 
   getParentData: ->
     parent = @$parent
@@ -43,8 +46,14 @@ class window.Accountant
       offsetLeft: parent.offset().left
       offsetTop: parent.offset().top
 
+      borderLeft: @_numberize( parent.css('border-left-width') )
+
       paddingLeft: @_numberize( parent.css('padding-left') )
       paddingTop: @_numberize( parent.css('padding-top') )
+
+    console.log('parent', data)
+
+    data
 
   getStartPoint: ->
     box = @getBoxData()
