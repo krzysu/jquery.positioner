@@ -1,5 +1,3 @@
-#= require_tree ./helpers
-
 describe "Positioner - fix element position during scroll", ->
   
   htmlFactory = new HtmlFactory()

@@ -11,7 +11,7 @@ class window.HtmlFactory
     @canvas().html('')
 
   boxWithParent: (boxId, parentId) ->
-    html = "<div id='#{parentId}' style='padding: 10px; height: 1000px; width: 1000px; margin: 100px 20px; position: relative;'>
-              <div id='#{boxId}' style='padding: 10px; height: 100px; width: 100px;'></div>
+    html = "<div id='#{parentId}'style='height: 1000px; width: 1000px; padding: 10px; margin: 10px; border: 1px solid; position: relative;'>
+              <div id='#{boxId}' style='height: 100px; width: 100px; padding: 10px; margin: 10px; border: 1px solid;'></div>
             </div>"
     @canvas().append(html)

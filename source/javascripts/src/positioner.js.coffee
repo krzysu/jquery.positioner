@@ -1,11 +1,12 @@
 class window.Positioner
   constructor: (@box, @parent, @margin = 0, @preserveSpace = false) ->
     if @box? && $(@box).length > 0
+      @accountant = new Accountant(@box, @parent)
+
+      @$box = $(@box)
       @_setData()
       @_initEvents()
       @_controlBoxPosition() # check initial position of box
-
-      @accountant = new Accountant(@box, @parent)
 
   _setData: () ->
     @isBoxFixed = false # for test purposes
@@ -14,25 +15,14 @@ class window.Positioner
     unless @isPreserved?
       @isPreserved = false
 
-    @$box = $(@box)
-
     @_unpinBox() # we must get box data from unpinned state
-    @boxWidth = @$box.width()
-    boxOffsetTop = @$box.offset().top
-    @boxOffsetLeft = @$box.offset().left
-    @startPoint = boxOffsetTop - @margin
-    @endPoint = $(document).height() # default height of whole page
 
-    if @parent != null && $(@parent).length > 0
-      $parent = $(@parent)
-      parentHeight = $parent.height()
-      @endPoint = boxOffsetTop + parentHeight - @$box.outerHeight() - @margin
+    @boxData = @accountant.getBoxData()
+    @startPoint = @accountant.getStartPoint() - @margin
+    @endPoint = @accountant.getEndPoint() - @margin
 
-      parentWidth = $parent.width()
-      parentPaddingTop = ($parent.innerHeight() - parentHeight)/2
-      parentPaddingLeft = ($parent.innerWidth() - parentWidth)/2
-      @distanceFromTopOfParent = parentHeight - @$box.outerHeight() + parentPaddingTop
-      @distanceFromLeftOfParent = parentWidth - @$box.outerWidth() + parentPaddingLeft
+    console.log('data', @boxData, @startPoint, @endPoint)
+
 
   _initEvents: () ->
     $(window).on 'scroll.positioner', () =>
@@ -59,8 +49,8 @@ class window.Positioner
       .addClass('pinned')
       .css
         position: 'fixed'
-        width: @boxWidth
-        left: @boxOffsetLeft
+        width: @boxData.width
+        left: @boxData.fixedPositionLeft
         top: @margin
 
     @isBoxFixed = true
@@ -83,9 +73,9 @@ class window.Positioner
       .removeClass('pinned')
       .css
         position: 'absolute'
-        width: @boxWidth
-        left: @distanceFromLeftOfParent
-        top: @distanceFromTopOfParent
+        width: @boxData.width
+        left: @boxData.absolutePositionLeft
+        top: @boxData.absolutePositionTop
 
     @isBoxFixed = false
     @isBoxAtTheBottom = true
