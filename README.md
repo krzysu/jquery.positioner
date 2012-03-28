@@ -1,16 +1,16 @@
 # jquery.positioner & positioner.coffee
 **keep element in fixed position during window scroll**
 
-version: 1.0 (I hope it deserves)
-requires: jQuery 1.7+
+version: 1.0 (I hope it deserves)  
+requires: jQuery 1.7+  
 
 
 
 ## How to use jquery.positioner?
 
-init:     `$(selector).positionMe(options)`
-refresh:  `$(selector).positionMe('refresh')`
-destroy:  `$(selector).positionMe('destroy')`
+init:     `$(selector).positionMe(options)`  
+refresh:  `$(selector).positionMe('refresh')`  
+destroy:  `$(selector).positionMe('destroy')`  
 
 #### Options
 
@@ -42,7 +42,7 @@ You can test and improve positioner.coffee using my test suite. It contains of s
 
 ## What about positioner.coffee?
 
-Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with test in Jasmine. Jquery plugin is in fact only other form of initialization.
+Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with test in Jasmine. Jquery plugin is in fact only other form of initialization.  
 
 
 * * *
