@@ -4,6 +4,7 @@ description: __keep element in fixed position during window scroll, you can limi
 version: 1.0 (I hope it deserves)  
 requires: jQuery 1.7+  
 download: [jquery.positioner.js](https://raw.github.com/krzysu/jquery.positioner/master/build/javascripts/jquery.positioner.js)  
+demo: [is here](http://krzysu.github.com/jquery.positioner/)
 
 
 ## How to use jquery.positioner?
