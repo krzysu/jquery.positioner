@@ -8,6 +8,7 @@
 # requires: jQuery 1.7+
 # author: Krzysztof Urbas, @krzysu, myviews.pl
 # license: available under the MIT license
+# homepage: https://github.com/krzysu/jquery.positioner
 
 # how to use?
 # init: 		$(selector).positionMe(options)
