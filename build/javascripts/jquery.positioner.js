@@ -3,7 +3,7 @@
 // desc: keep element in fixed position during window scroll
 // version: 1.0 (I hope it deserves)
 // requires: jQuery 1.7+
-// author: Krzysztof Urbas, @krzysu
+// author: Krzysztof Urbas, @krzysu, myviews.pl
 // license: available under the MIT license
 
 // how to use?
