@@ -1,6 +1,6 @@
 # jquery.positioner & positioner.coffee
-**keep element in fixed position during window scroll**
 
+description: __keep element in fixed position during window scroll, you can limit positioning area by parent element__  
 version: 1.0 (I hope it deserves)  
 requires: jQuery 1.7+  
 
@@ -16,10 +16,10 @@ destroy:  `$(selector).positionMe('destroy')`
 
 In comments there are default values
 
-  options:
-    parent: selector          // null
-    margin: int               // 0
-    preserveSpace: boolean      // false
+    options:
+      parent: selector            // null
+      margin: int                 // 0
+      preserveSpace: boolean      // false
 
 -   `parent` : parent element that limits box position
 -   `margin` : distance between positioned element and top of the window 
@@ -42,7 +42,7 @@ You can test and improve positioner.coffee using my test suite. It contains of s
 
 ## What about positioner.coffee?
 
-Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with test in Jasmine. Jquery plugin is in fact only other form of initialization.  
+Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with tests in Jasmine. Jquery plugin is in fact only other form of initialization.  
 
 
 * * *
