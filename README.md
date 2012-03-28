@@ -5,8 +5,9 @@ version: 1.0 (I hope it deserves)
 requires: jQuery 1.7+  
 
 
-
 ## How to use jquery.positioner?
+
+`selector` is element that we want to position, i.e. `'#box'`  
 
 init:     `$(selector).positionMe(options)`  
 refresh:  `$(selector).positionMe('refresh')`  
@@ -21,10 +22,14 @@ In comments there are default values
       margin: int                 // 0
       preserveSpace: boolean      // false
 
--   `parent` : parent element that limits box position
+-   `parent` : parent element that limits `selector` position
 -   `margin` : distance between positioned element and top of the window 
 -   `preserveSpace` : if `true` will add temporary element in exactly the same dimensions like positioned element to preserve page layout
 
+
+## What about positioner.coffee?
+
+Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with tests in Jasmine. Jquery plugin is in fact only other form of initialization.
 
 
 ## Test suite
@@ -37,12 +42,6 @@ You can test and improve positioner.coffee using my test suite. It contains of s
 -   go to `0.0.0.0:4567` in your browser for test/demo page
 -   go to `0.0.0.0:4567/SpecRunner.html` to run Jasmine tests
 -   run `middleman build` if you need JS version
-
-
-
-## What about positioner.coffee?
-
-Positioner.coffee is a class written in CoffeeScript that do all the magic behind jquery.positioner. So you can use it directly in your project if you like together with tests in Jasmine. Jquery plugin is in fact only other form of initialization.  
 
 
 * * *
