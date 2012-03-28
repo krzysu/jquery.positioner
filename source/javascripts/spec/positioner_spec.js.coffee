@@ -10,9 +10,9 @@ describe "Positioner - fix element position during scroll", ->
 
   describe "Positioner without parent element", ->
     it "should set end point to height of document if no parent element provided or not found", ->
-      positioner = new Positioner('#box', '', 10)
+      positioner = new Positioner('#box', '', 0)
       expect(positioner.endPoint).toEqual( $(document).height() )
-      expect( (positioner.endPoint - positioner.startPoint) > 900 ).toBeTruthy()
+      expect( (positioner.endPoint - positioner.startPoint) > 869 ).toBeTruthy()
 
   describe "Positioner with parent element", ->
 
@@ -25,13 +25,13 @@ describe "Positioner - fix element position during scroll", ->
       @positioner.destroy()
 
     it "should set start and end points, where box will have position fixed", ->
-      expect( @positioner.endPoint - @positioner.startPoint ).toEqual(880)
+      expect( @positioner.endPoint - @positioner.startPoint ).toEqual(869) # see accountant test
 
     it "should pin box position when window top scroll value is in range of start/end points", ->
       @browserWindow.scrollInRange()
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
 
-      expect(distanceFromTopOfWindow).toEqual(@margin)
+      expect(distanceFromTopOfWindow).toEqual(@margin + @positioner.boxData.marginTop)
       expect(@positioner.isBoxFixed).toEqual(true)
 
     it "should not pin box position when window top scroll value is on edge of start point", ->
@@ -59,7 +59,7 @@ describe "Positioner - fix element position during scroll", ->
       distanceFromTopOfParent = $('#box').offset().top - $('#parent').offset().top
 
       expect(distanceFromTopOfWindow).not.toEqual(@margin)
-      expect(distanceFromTopOfParent).toEqual(890)
+      expect(distanceFromTopOfParent).toEqual(889) # remember about the border
       expect(@positioner.isBoxAtTheBottom).toEqual(true)
 
     it "should be able to destroy itself", ->
@@ -95,7 +95,7 @@ describe "Positioner - fix element position during scroll", ->
 
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
 
-      expect(distanceFromTopOfWindow).toEqual(@margin)
+      expect(distanceFromTopOfWindow).toEqual(@margin + @positioner.boxData.marginTop)
       expect(@positioner.isBoxFixed).toEqual(true)
 
 

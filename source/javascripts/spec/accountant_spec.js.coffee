@@ -13,7 +13,7 @@ describe "Accountant - count distances between box and parent", ->
       accountant = new Accountant('#box', '')
 
       expect( accountant.getEndPoint() ).toEqual( $(document).height() )
-      expect( (accountant.getEndPoint() - accountant.getStartPoint()) > 880 ).toBeTruthy()
+      expect( (accountant.getEndPoint() - accountant.getStartPoint()) > 869 ).toBeTruthy()
 
   describe "Accountant with parent element", ->
 
@@ -21,4 +21,12 @@ describe "Accountant - count distances between box and parent", ->
       @accountant = new Accountant('#box', '#parent', @margin)
 
     it "should set start and end points, where box will have position fixed", ->
-      expect( @accountant.getEndPoint() - @accountant.getStartPoint() ).toEqual(880)
+      
+      # x = $('#box').offset().top
+      # y = $('#parent').offset().top
+      # x - y = 21
+      # startPoint = box.offsetTop - box.marginTop = x - 10
+      # endPoint = parent.offsetTop + @$parent.outerHeight() - @$box.outerHeight(true) = y + 1022 - 142
+      # endPoint - startPoint = y - x + 890 = 869
+      
+      expect( @accountant.getEndPoint() - @accountant.getStartPoint() ).toEqual(869)
