@@ -9,13 +9,18 @@ class window.Accountant
 
     @$box = $(@box)
     @$parent = $(@parent)
+    @_prepareData()
 
   _numberize: (value) ->
     parseInt(value, 10) || 0
 
+  _prepareData: ->
+    @_parentData = @getParentData()
+    @_boxData = @getBoxData()
+
   getBoxData: ->
     box = @$box
-    parent = @getParentData()
+    parent = @_parentData
 
     data =
       width: box.width()
@@ -31,9 +36,8 @@ class window.Accountant
       absolutePositionTop: parent.height + parent.paddingTop - box.outerHeight()
 
     data.fixedPositionLeft = data.offsetLeft - data.marginLeft
-    data.absolutePositionLeft = data.offsetLeft - parent.offsetLeft - data.marginLeft + parent.borderLeft
+    data.absolutePositionLeft = data.offsetLeft - parent.offsetLeft - data.marginLeft - parent.borderLeft
 
-    console.log('box', data)
     data
 
   getParentData: ->
@@ -51,19 +55,14 @@ class window.Accountant
       paddingLeft: @_numberize( parent.css('padding-left') )
       paddingTop: @_numberize( parent.css('padding-top') )
 
-    console.log('parent', data)
-
-    data
-
   getStartPoint: ->
-    box = @getBoxData()
-
+    box = @_boxData
     startPoint = box.offsetTop - box.marginTop
     
   getEndPoint: ->
     unless @isParentDefined? and @isParentDefined == false
-      box = @getBoxData()
-      parent = @getParentData()
+      box = @_boxData
+      parent = @_parentData
       endPoint = parent.offsetTop + @$parent.outerHeight() - @$box.outerHeight(true)
     else
       endPoint = $(document).height()
