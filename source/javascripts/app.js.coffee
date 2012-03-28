@@ -12,6 +12,8 @@ class window.PageController
         positioner.refresh()
       ), 4000
 
+    # @initJqueryVersion()
+
   visualHelper: (accountant) ->
     $el = $('#element')
 
@@ -28,3 +30,15 @@ class window.PageController
 
     $('#start-point').text( accountant.getStartPoint() )
     $('#end-point').text( accountant.getEndPoint() )
+
+  initJqueryVersion: ->
+    $('#element').positionMe
+      parent: '#parent'
+      margin: 0
+      preserveSpace: false
+
+    setTimeout (
+      ->
+        $('#parent').height(1500) 
+        $('#element').positionMe 'refresh'
+      ), 4000
