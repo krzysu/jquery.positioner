@@ -1,0 +1,1 @@
+body{font-family:sans-serif;color:#2a2a2a}p{margin:0}#container{width:1100px;max-width:100%;margin:0 auto}.box,#parent,.some-element,#element{border:1px solid #000;padding:10px;margin:10px}#parent{height:1000px;*zoom:1;position:relative}#parent:after{content:"";display:table;clear:both}.some-element{height:100px}#element{float:right;height:200px;width:50%}footer{height:1000px}
