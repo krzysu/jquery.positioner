@@ -45,6 +45,11 @@ You can test and improve positioner.coffee using my test suite. It contains of s
 -   run `middleman build` if you need JS version
 
 
+## Be aware!
+
+This plugin has one drawback. As it is written in CoffeeScript in separate files I needed to make both Positioner and Accountant classes the global ones. So the global namespace is polluted with these two class names. I will think how to fix this but just be warned so far.
+
+
 * * *
 Copyright (c) 2012 Krzysztof Urbas (@krzysu).
 
