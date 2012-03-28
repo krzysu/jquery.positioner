@@ -1,2 +1,9 @@
 .sass-cache/
-build/
+
+build/stylesheets
+build/*.html
+
+build/javascripts/lib
+build/javascripts/spec
+build/javascripts/src
+build/javascripts/app.js
