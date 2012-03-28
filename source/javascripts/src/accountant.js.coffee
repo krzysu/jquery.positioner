@@ -20,7 +20,7 @@ class window.Accountant
 
   getBoxData: ->
     box = @$box
-    parent = @_parentData
+    parent = @getParentData()
 
     data =
       width: box.width()

@@ -74,7 +74,7 @@ class window.Positioner
         position: 'absolute'
         width: @boxData.width
         left: @boxData.absolutePositionLeft
-        top: '' # @boxData.absolutePositionTop
+        top: ''
         bottom: 0
 
     @isBoxFixed = false
