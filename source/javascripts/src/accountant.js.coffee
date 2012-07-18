@@ -1,4 +1,7 @@
-class window.Accountant
+unless window.PositionerNamespace?
+  window.PositionerNamespace = {}
+
+class window.PositionerNamespace.Accountant
   constructor: (@box, @parent) ->
     unless @box? and $(@box).length > 0
       @box = 'body'

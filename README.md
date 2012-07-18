@@ -1,7 +1,7 @@
 # jquery.positioner & positioner.coffee
 
 description: __keep element in fixed position during window scroll, you can limit positioning area by parent element__  
-version: 1.0 (I hope it deserves)  
+version: 1.1 (I hope it deserves)  
 requires: jQuery 1.7+  
 download: [jquery.positioner.js](https://raw.github.com/krzysu/jquery.positioner/master/build/javascripts/jquery.positioner.js)  
 demo: [is here](http://krzysu.github.com/jquery.positioner/)
@@ -47,6 +47,8 @@ You can test and improve positioner.coffee using my test suite. It contains of s
 
 
 ## Be aware!
+
+Fixed in v1.1: added namespace `PositionerNamespace`  
 
 This plugin has one drawback. As it is written in CoffeeScript in separate files I needed to make both Positioner and Accountant classes the global ones. So the global namespace is polluted with these two class names. I will think how to fix this but just be warned so far.
 

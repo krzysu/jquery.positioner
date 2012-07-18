@@ -1,7 +1,18 @@
-class window.Positioner
+unless window.PositionerNamespace?
+  window.PositionerNamespace = {}
+
+class window.PositionerNamespace.Positioner
+  @instanceId: ( ->
+    id = 0
+    ->
+      id++
+  )()
+
   constructor: (@box, @parent, @margin = 0, @preserveSpace = false) ->
+    @id = PositionerNamespace.Positioner.instanceId()
+
     if @box? && $(@box).length > 0
-      @accountant = new Accountant(@box, @parent)
+      @accountant = new PositionerNamespace.Accountant(@box, @parent)
 
       @$box = $(@box)
       @_setData()
@@ -33,8 +44,8 @@ class window.Positioner
     windowTopScroll = $(window).scrollTop()
 
     if windowTopScroll > @startPoint && windowTopScroll < @endPoint
-      @_pinBox()
       @_preserveSpace()
+      @_pinBox()
     else if windowTopScroll >= @endPoint
       @_unpinBoxAtTheEnd()
     else 
@@ -82,7 +93,7 @@ class window.Positioner
 
   _preserveSpace: () ->
     if @preserveSpace
-      $spacer = $('<div class="positioner-spacer">')
+      $spacer = $('<div>').addClass('positioner-spacer-' + @id)
       unless @isPreserved
         height = @$box.outerHeight(true)
         $spacer.css('height', height).insertAfter(@box)
@@ -90,7 +101,7 @@ class window.Positioner
 
   _returnSpace: () ->
     if @isPreserved
-      $('.positioner-spacer').remove()
+      $('.positioner-spacer-' + @id).remove()
       @isPreserved = false
 
 
@@ -99,7 +110,7 @@ class window.Positioner
 
   destroy: () ->
     @_unpinBox()
-    $('.positioner-spacer').remove()
+    $('.positioner-spacer-' + @id).remove()
     $(window).off '.positioner'
 
 

@@ -3,7 +3,7 @@
 
 class window.PageController
   constructor: ->
-    positioner = new Positioner('#element', '#parent', 0)
+    positioner = new PositionerNamespace.Positioner('#element', '#parent', 0)
     @visualHelper(positioner.accountant)
 
     setTimeout (

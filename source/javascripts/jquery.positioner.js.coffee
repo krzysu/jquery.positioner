@@ -42,7 +42,7 @@ methods =
       preserveSpace: false
 
     settings = $.extend({}, defaults, options)
-    positioner = new Positioner(@, settings.parent, settings.margin, settings.preserveSpace)
+    positioner = new PositionerNamespace.Positioner(@, settings.parent, settings.margin, settings.preserveSpace)
     @
 
   refresh: () ->
