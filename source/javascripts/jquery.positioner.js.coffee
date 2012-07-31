@@ -4,19 +4,19 @@
 #
 # jquery.positioner
 # desc: keep element in fixed position during window scroll
-# version: 1.0 (I hope it deserves)
+# version: 1.1
 # requires: jQuery 1.7+
 # author: Krzysztof Urbas, @krzysu, myviews.pl
 # license: available under the MIT license
 # homepage: https://github.com/krzysu/jquery.positioner
 
 # how to use?
-# init: 		$(selector).positionMe(options)
+# init:     $(selector).positionMe(options)
 # refresh:  $(selector).positionMe('refresh')
-# destroy: 	$(selector).positionMe('destroy')
+# destroy:  $(selector).positionMe('destroy')
 
 # options:
-# 	parent: null           // parent element that limit box position
+#   parent: null           // parent element that limit box position
 #   margin: 0              // distance between positioned element and top of the window 
 #   preserveSpace: false   // will add temporary element in exactly the same dimensions like positioned element to preserve page layout
 #
@@ -36,7 +36,7 @@ $.fn.positionMe = (method) ->
 
 methods = 
   init: (options) ->
-  	defaults =
+    defaults =
       parent: null
       margin: 0
       preserveSpace: false
@@ -46,10 +46,12 @@ methods =
     @
 
   refresh: () ->
-    positioner.refresh()
+    if positioner?
+      positioner.refresh()
     @
 
   destroy: () ->
-    positioner.destroy()
+    if positioner?
+      positioner.destroy()
     @
 
