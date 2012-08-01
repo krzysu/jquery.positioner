@@ -10,7 +10,7 @@ describe "Accountant - count distances between box and parent", ->
 
   describe "Accountant without parent element", ->
     it "should set end point to height of document if no parent element provided or not found", ->
-      accountant = new Accountant('#box', '')
+      accountant = new PositionerNamespace.Accountant('#box', '')
 
       expect( accountant.getEndPoint() ).toEqual( $(document).height() )
       expect( (accountant.getEndPoint() - accountant.getStartPoint()) > 869 ).toBeTruthy()
@@ -18,7 +18,7 @@ describe "Accountant - count distances between box and parent", ->
   describe "Accountant with parent element", ->
 
     beforeEach () ->
-      @accountant = new Accountant('#box', '#parent', @margin)
+      @accountant = new PositionerNamespace.Accountant('#box', '#parent', @margin)
 
     it "should set start and end points, where box will have position fixed", ->
       

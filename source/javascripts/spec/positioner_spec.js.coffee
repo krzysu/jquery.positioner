@@ -10,7 +10,7 @@ describe "Positioner - fix element position during scroll", ->
 
   describe "Positioner without parent element", ->
     it "should set end point to height of document if no parent element provided or not found", ->
-      positioner = new Positioner('#box', '', 0)
+      positioner = new PositionerNamespace.Positioner('#box', '', 0)
       expect(positioner.endPoint).toEqual( $(document).height() )
       expect( (positioner.endPoint - positioner.startPoint) > 869 ).toBeTruthy()
 
@@ -18,7 +18,7 @@ describe "Positioner - fix element position during scroll", ->
 
     beforeEach () ->
       @margin = 10
-      @positioner = new Positioner('#box', '#parent', @margin)
+      @positioner = new PositionerNamespace.Positioner('#box', '#parent', @margin)
       @browserWindow = new Window(@positioner)
 
     afterEach () ->

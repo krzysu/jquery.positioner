@@ -8,7 +8,7 @@ class window.PositionerNamespace.Positioner
       id++
   )()
 
-  constructor: (@box, @parent, @margin = 0, @preserveSpace = false) ->
+  constructor: (@box, @parent, @margin = 0, @preserveSpace = false, debugMode = false) ->
     @id = PositionerNamespace.Positioner.instanceId()
 
     if @box? && $(@box).length > 0
@@ -18,6 +18,9 @@ class window.PositionerNamespace.Positioner
       @_setData()
       @_initEvents()
       @_controlBoxPosition() # check initial position of box
+
+      if debugMode
+        new PositionerNamespace.Debugger(@, @accountant)
 
   _setData: () ->
     @isBoxFixed = false # for test purposes
