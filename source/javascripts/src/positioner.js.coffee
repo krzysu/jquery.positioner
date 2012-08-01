@@ -8,10 +8,11 @@ class window.PositionerNamespace.Positioner
       id++
   )()
 
-  constructor: (@box, @parent, @margin = 0, @preserveSpace = false, debugMode = false) ->
+  constructor: (@box, settings) ->
     @id = PositionerNamespace.Positioner.instanceId()
 
     if @box? && $(@box).length > 0
+      @_readSettings(settings)
       @accountant = new PositionerNamespace.Accountant(@box, @parent)
 
       @$box = $(@box)
@@ -19,8 +20,18 @@ class window.PositionerNamespace.Positioner
       @_initEvents()
       @_controlBoxPosition() # check initial position of box
 
-      if debugMode
+      if @debugMode
         new PositionerNamespace.Debugger(@, @accountant)
+
+  _readSettings: (settings) ->
+    @parent = if settings.parent? then settings.parent
+    @margin = if settings.margin? then settings.margin else 0
+    @preserveSpace = if settings.preserveSpace? then settings.preserveSpace else false
+    @debugMode = if settings.debugMode? then settings.debugMode else false
+    
+    @callbacks = {}
+    @callbacks.pinnedCallback = settings.pinnedCallback
+    @callbacks.unpinnedCallback = settings.unpinnedCallback
 
   _setData: () ->
     @isBoxFixed = false # for test purposes
@@ -56,14 +67,18 @@ class window.PositionerNamespace.Positioner
       @_returnSpace()
 
   _pinBox: () ->
-    @$box
-      .addClass('pinned')
-      .css
-        position: 'fixed'
-        width: @boxData.width
-        left: @boxData.fixedPositionLeft
-        top: @margin
-        bottom: ''
+    unless @isBoxFixed
+      @$box
+        .addClass('pinned')
+        .css
+          position: 'fixed'
+          width: @boxData.width
+          left: @boxData.fixedPositionLeft
+          top: @margin
+          bottom: ''
+
+      if typeof @callbacks.pinnedCallback == 'function'
+        @callbacks.pinnedCallback()
 
     @isBoxFixed = true
     @isBoxAtTheBottom = false
@@ -77,6 +92,10 @@ class window.PositionerNamespace.Positioner
         left: ''
         top: ''
         bottom: ''
+
+    if @isBoxFixed
+      if typeof @callbacks.unpinnedCallback == 'function'
+        @callbacks.unpinnedCallback()
 
     @isBoxFixed = false
     @isBoxAtTheBottom = false

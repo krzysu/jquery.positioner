@@ -10,15 +10,22 @@ describe "Positioner - fix element position during scroll", ->
 
   describe "Positioner without parent element", ->
     it "should set end point to height of document if no parent element provided or not found", ->
-      positioner = new PositionerNamespace.Positioner('#box', '', 0)
+      
+      settings =
+        margin: 0
+
+      positioner = new PositionerNamespace.Positioner('#box', settings)
       expect(positioner.endPoint).toEqual( $(document).height() )
       expect( (positioner.endPoint - positioner.startPoint) > 869 ).toBeTruthy()
 
   describe "Positioner with parent element", ->
 
     beforeEach () ->
-      @margin = 10
-      @positioner = new PositionerNamespace.Positioner('#box', '#parent', @margin)
+      @settings =
+        parent: '#parent'
+        margin: 10
+
+      @positioner = new PositionerNamespace.Positioner('#box', @settings)
       @browserWindow = new Window(@positioner)
 
     afterEach () ->
@@ -31,7 +38,7 @@ describe "Positioner - fix element position during scroll", ->
       @browserWindow.scrollInRange()
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
 
-      expect(distanceFromTopOfWindow).toEqual(@margin + @positioner.boxData.marginTop)
+      expect(distanceFromTopOfWindow).toEqual(@settings.margin + @positioner.boxData.marginTop)
       expect(@positioner.isBoxFixed).toEqual(true)
 
     it "should not pin box position when window top scroll value is on edge of start point", ->
@@ -48,7 +55,7 @@ describe "Positioner - fix element position during scroll", ->
       
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
 
-      expect(distanceFromTopOfWindow).not.toEqual(@margin)
+      expect(distanceFromTopOfWindow).not.toEqual(@settings.margin)
       expect(@positioner.isBoxFixed).toEqual(false)
 
     it "should leave box at the bottom of parent when window top scroll value was in range but now is under the end point", ->
@@ -58,7 +65,7 @@ describe "Positioner - fix element position during scroll", ->
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
       distanceFromTopOfParent = $('#box').offset().top - $('#parent').offset().top
 
-      expect(distanceFromTopOfWindow).not.toEqual(@margin)
+      expect(distanceFromTopOfWindow).not.toEqual(@settings.margin)
       expect(distanceFromTopOfParent).toEqual(889) # remember about the border
       expect(@positioner.isBoxAtTheBottom).toEqual(true)
 
@@ -68,7 +75,7 @@ describe "Positioner - fix element position during scroll", ->
       @positioner.destroy()
 
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
-      expect(distanceFromTopOfWindow).not.toEqual(@margin)
+      expect(distanceFromTopOfWindow).not.toEqual(@settings.margin)
       expect(@positioner.isBoxFixed).toEqual(false)
 
     it "should preserve the width of positioned box when pinned", ->
@@ -95,7 +102,7 @@ describe "Positioner - fix element position during scroll", ->
 
       distanceFromTopOfWindow = $('#box').offset().top - $(window).scrollTop()
 
-      expect(distanceFromTopOfWindow).toEqual(@margin + @positioner.boxData.marginTop)
+      expect(distanceFromTopOfWindow).toEqual(@settings.margin + @positioner.boxData.marginTop)
       expect(@positioner.isBoxFixed).toEqual(true)
 
 

@@ -16,10 +16,11 @@
 # destroy:  $(selector).positionMe('destroy')
 
 # options:
-#   parent: null           // parent element that limit box position
-#   margin: 0              // distance between positioned element and top of the window 
-#   preserveSpace: false   // will add temporary element in exactly the same dimensions like positioned element to preserve page layout
-#
+#   parent: null            // parent element that limit box position
+#   margin: 0               // distance between positioned element and top of the window 
+#   preserveSpace: false    // will add temporary element in exactly the same dimensions like positioned element to preserve page layout
+#   pinnedCallback: ->      // called once when positioned element is pinned to screen
+#   unpinnedCallback: ->    // called once when positioned element is unpinned from screen
 
 
 $ = jQuery
@@ -40,9 +41,12 @@ methods =
       parent: null
       margin: 0
       preserveSpace: false
+      debugMode: false
+      pinnedCallback: ->
+      unpinnedCallback: ->
 
     settings = $.extend({}, defaults, options)
-    positioner = new PositionerNamespace.Positioner(@, settings.parent, settings.margin, settings.preserveSpace)
+    positioner = new PositionerNamespace.Positioner(@, settings)
     @
 
   refresh: () ->

@@ -3,7 +3,24 @@
 
 class window.PageController
   constructor: ->
-    positioner = new PositionerNamespace.Positioner('#element', '#parent', 0, true, true)
+    @initSettings()
+    
+    # @initCoffeeVersion()
+    @initJqueryVersion()
+
+  initSettings: ->
+    @settings =
+      parent: '#parent'
+      margin: 0
+      preserveSpace: false
+      debugMode: true
+      pinnedCallback: ->
+        console.log 'pinned callback test'
+      unpinnedCallback: ->
+        console.log 'unpinned callback test'
+
+  initCoffeeVersion: ->
+    positioner = new PositionerNamespace.Positioner('#element', @settings)
     @visualHelper(positioner.accountant)
 
     setTimeout (
@@ -11,8 +28,6 @@ class window.PageController
         $('#parent').height(1500) 
         positioner.refresh()
       ), 4000
-
-    # @initJqueryVersion()
 
   visualHelper: (accountant) ->
     $el = $('#element')
@@ -32,10 +47,7 @@ class window.PageController
     $('#end-point').text( accountant.getEndPoint() )
 
   initJqueryVersion: ->
-    $('#element').positionMe
-      parent: '#parent'
-      margin: 0
-      preserveSpace: false
+    $('#element').positionMe( @settings )
 
     setTimeout (
       ->
